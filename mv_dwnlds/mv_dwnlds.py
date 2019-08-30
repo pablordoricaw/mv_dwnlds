@@ -15,15 +15,15 @@ class MyHandler(FileSystemEventHandler):
 
         for file_name in os.listdir(folder_to_track):
             f = File(file_name)
+            if f.get_file_name() != ignore_file.get_file_name():
+                temp_folder_destination = folder_destination + f.get_file_type()[1:]
+                temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
+                Path(temp_folder_destination).mkdir(exist_ok=True)
 
-            temp_folder_destination = folder_destination + f.get_file_type()[1:]
-            temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
-            Path(temp_folder_destination).mkdir(exist_ok=True)
+                src = folder_to_track + f.get_file_name()
+                new_destination = temp_folder_destination + f.get_file_name()
 
-            src = folder_to_track + f.get_file_name()
-            new_destination = temp_folder_destination + f.get_file_name()
-
-            os.rename(src, new_destination)
+                os.rename(src, new_destination)
 
 class File():
     def __init__(self, file_name):
@@ -41,9 +41,12 @@ if __name__ == "__main__":
 
     global folder_to_track
     global folder_destination
+    global ignore_file
 
     folder_to_track = config['track_dir']
     folder_destination = config['dst_dir']
+    ignore_file_name = config['ignore_file']
+    ignore_file = File(ignore_file_name)
 
     event_handler = MyHandler()
     observer = Observer()
