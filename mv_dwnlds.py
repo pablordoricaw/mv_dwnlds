@@ -14,8 +14,7 @@ class MyHandler(FileSystemEventHandler):
 
 if __name__ == "__main__":
     folder_to_track = "/Users/pablordoricaw/Downloads"
-    folder_destination = "/Users/pablordoricaw/Documents"
-    print(f"Tracking -> {folder_to_track}\nDestination -> {folder_destination}")
+    folder_destination = "/Users/pablordoricaw/Desktop"
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, folder_to_track, recursive=True)
