@@ -36,7 +36,8 @@ class File():
         return Path(self._file_name).suffix
 
 if __name__ == "__main__":
-    config = utils.read_config('./config.yml')
+    d = os.path.dirname(os.path.abspath(__file__))
+    config = utils.read_config(os.path.join(d, './config.yml'))
 
     global folder_to_track
     global folder_destination
