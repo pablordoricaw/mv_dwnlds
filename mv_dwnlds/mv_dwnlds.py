@@ -2,14 +2,10 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 import os
-import json
 import time
 from pathlib import Path
 
 import utils
-
-folder_to_track = "/Users/pablordoricaw/Downloads"
-folder_destination = "/Users/pablordoricaw/Desktop/"
 
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
@@ -40,6 +36,14 @@ class File():
         return Path(self._file_name).suffix
 
 if __name__ == "__main__":
+    config = utils.read_config('./config.yml')
+
+    global folder_to_track
+    global folder_destination
+
+    folder_to_track = config['track_dir']
+    folder_destination = config['dst_dir']
+
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, folder_to_track, recursive=True)
