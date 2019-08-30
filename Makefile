@@ -4,13 +4,14 @@ SRC=./mv_dwnlds/mv_dwnlds.py
 
 help:
 	@echo "Available targets:"
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+	@echo "- start: start the program in the background"
+	@echo "- stop: kill the program running in the background"
+	@echo "- restart: restart the program in the background"
 
-start: ## Start the program in the background
-	nohup python $(SRC) &
+start:
+	python $(SRC) &
 
-stop: ## Kill the program running the background
+stop:
 	pkill -f $(SRC)
 
-restart: ## Restart the program
-	stop start
+restart: stop start
