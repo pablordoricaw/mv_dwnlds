@@ -7,7 +7,7 @@ help:
 	@echo "- start: start the program in the background"
 	@echo "- stop: kill the program running in the background"
 	@echo "- restart: restart the program in the background"
-
+	@echo "- status: display if the program is running in the background"
 start:
 	python $(SRC) &
 
@@ -15,3 +15,6 @@ stop:
 	pkill -f $(SRC)
 
 restart: stop start
+
+status:
+	ps ax | grep $(SRC)
