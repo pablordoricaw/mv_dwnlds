@@ -18,7 +18,7 @@ class MyHandler(FileSystemEventHandler):
             if f.get_file_name() != ignore_file.get_file_name():
                 temp_folder_destination = folder_destination + f.get_file_type()[1:]
                 temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
-                Path(temp_folder_destination).mkdir(exist_ok=True)
+                Path(temp_folder_destination).mkdir(parents=True, exist_ok=True)
 
                 src = folder_to_track + f.get_file_name()
                 new_destination = temp_folder_destination + f.get_file_name()
