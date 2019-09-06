@@ -15,15 +15,16 @@ class MyHandler(FileSystemEventHandler):
 
         for file_name in os.listdir(folder_to_track):
             f = File(file_name)
-            if f.get_file_name() != ignore_file.get_file_name():
-                temp_folder_destination = folder_destination + f.get_file_type()[1:]
-                temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
-                Path(temp_folder_destination).mkdir(parents=True, exist_ok=True)
+            if not f.get_file_name().endswith(".crdownload"):
+                if f.get_file_name() != ignore_file.get_file_name():
+                    temp_folder_destination = folder_destination + f.get_file_type()[1:]
+                    temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
+                    Path(temp_folder_destination).mkdir(parents=True, exist_ok=True)
 
-                src = folder_to_track + f.get_file_name()
-                new_destination = temp_folder_destination + f.get_file_name()
+                    src = folder_to_track + f.get_file_name()
+                    new_destination = temp_folder_destination + f.get_file_name()
 
-                os.rename(src, new_destination)
+                    os.rename(src, new_destination)
 
 class File():
     def __init__(self, file_name):
