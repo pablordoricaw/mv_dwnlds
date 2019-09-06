@@ -15,7 +15,7 @@ class MyHandler(FileSystemEventHandler):
 
         for file_name in os.listdir(folder_to_track):
             f = File(file_name)
-            if not f.get_file_name().endswith(".crdownload"):
+            if not (f.get_file_name().endswith(".crdownload") or f.get_file_name().startswith(".com.google.Chrome")):
                 if f.get_file_name() != ignore_file.get_file_name():
                     temp_folder_destination = folder_destination + f.get_file_type()[1:]
                     temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
