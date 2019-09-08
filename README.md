@@ -18,22 +18,16 @@ necessary packages.
 
 To create the same environment with all the packages for that the script needs
 run the following command in your CLI:
-"""
-conda env create -f environment.yml
-"""
+```conda env create -f environment.yml```
 
 Verify the environment was created by checking that the environment `mv_dwnlds`
 exists when running:
-"""
-conda info -e
-"""
+```conda info -e```
 
 ### Activating the Environment
 
 To activate the environment execute in the CLI:
-"""
-conda activate mv_dwnlds
-"""
+```conda activate mv_dwnlds```
 
 ## Running the Python Script
 
@@ -42,11 +36,11 @@ has targets to run, stop or restart the sript in the background.
 
 To run the script in the background with using the Makefile, make sure you're
 inside the project directory where the Makefile is and execute:
-"""make start"""
+```make start```
 
 To stop the script in the background you can do:
-"""make stop"""
+```make stop```
 
 To restart the script (`make stop` followed by `make start`) you can do:
-"""make restart"""
+```make restart```
 
