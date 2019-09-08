@@ -4,7 +4,7 @@ This Python script is based on Kalle Hallden's [YouTube video](https://www.youtu
 to move the files downloaded with Google Chrome to the Downloads folder to
 folders based on the file extension inside a new folder called "Descargas".
 
-<p style="color:red;">**IMPORTANT**</p>: It's important to note this script only works with downloads from
+<span style="color:red">**IMPORTANT:**</span> It's important to note this script only works with downloads from
 Google Chrome. If the script is running and another browser downloads a file,
 most likely the download will fail.
 
