@@ -8,6 +8,18 @@ folders based on the file extension inside a new folder called "Descargas".
 Google Chrome. If the script is running and another browser downloads a file,
 most likely the download will fail.
 
+## Installation
+
+Clone the directory or download the latest release.
+
+Once you have downloaded the code update the `config.yml` to use the correct
+paths to the Downloads folder and the "new" Downloads folder (by default
+called Descargas).
+
+The last config value, ignore_file, can be ignored or you can chose to move the
+`README!.txt` file to your original Downloads folder to remind you of where the
+downloads are going in case you forget.
+
 ## Python Environment
 
 Conda was used to manage the environment. If you desire to use pip to download
