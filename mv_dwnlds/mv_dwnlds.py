@@ -15,7 +15,7 @@ class MyHandler(FileSystemEventHandler):
 
         for file_name in os.listdir(folder_to_track):
             f = File(file_name)
-            if not (f.get_file_name().endswith(".crdownload") or f.get_file_name().startswith(".com.google.Chrome")):
+            if f.is_downloaded():
                 if f.get_file_name() != ignore_file.get_file_name():
                     temp_folder_destination = folder_destination + f.get_file_type()[1:]
                     temp_folder_destination = temp_folder_destination + '/' if temp_folder_destination[-1] != '/' else temp_folder_destination
@@ -35,6 +35,11 @@ class File():
 
     def get_file_type(self):
         return Path(self._file_name).suffix
+
+    def is_downloaded(self):
+        return True if not (self.get_file_name().endswith(".crdownload") or
+            self.get_file_name().startswith(".com.google.Chrome") or
+            self.get_file_name().endswith(".download")) else False
 
 if __name__ == "__main__":
     d = os.path.dirname(os.path.abspath(__file__))
