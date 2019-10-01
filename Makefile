@@ -1,4 +1,7 @@
-SRC=./mv_dwnlds/mv_dwnlds.py
+CMD=python ./mv_dwnlds/mv_dwnlds.py
+RUNIN=if pgrep -f "$(CMD)" > /dev/null; then true; else false; fi
+NOTRUNIN=! $(RUNIN)
+KILL=pkill -f
 
 .PHONY: help start stop restart
 
@@ -8,13 +11,31 @@ help:
 	@echo "- stop: kill the program running in the background"
 	@echo "- restart: restart the program in the background"
 	@echo "- status: display if the program is running in the background"
+
 start:
-	python $(SRC) &
+	@if $(NOTRUNIN); then \
+	$(CMD) & \
+	echo "Started $(CMD) in the background..."; \
+else \
+	echo "$(CMD) is already running in the background..."; \
+fi
 
 stop:
-	pkill -f $(SRC)
+	@if $(RUNIN); then \
+	$(KILL) $(CMD); \
+	echo "Stopped $(CMD)"; \
+else \
+	echo "$(CMD) is not running..."; \
+fi
+
 
 restart: stop start
 
 status:
-	ps ax | grep $(SRC)
+	@if $(RUNIN); then \
+	echo "$(CMD) is running in the background..."; \
+else \
+	echo "$(CMD) is NOT running in the background..."; \
+fi
+
+
