@@ -1,9 +1,17 @@
+SHELL=/usr/local/bin/zsh
+
+
 CMD=python ./mv_dwnlds/mv_dwnlds.py
 RUNIN=if pgrep -f "$(CMD)" > /dev/null; then true; else false; fi
 NOTRUNIN=! $(RUNIN)
 KILL=pkill -f
 
-.PHONY: help start stop restart
+ENV=mv_dwnlds
+ACTIVATE=conda activate $(ENV)
+DEACTIVATE=conda deactivate
+NOTRUNINENV=! $(RUNINENV)
+
+.PHONY: help start stop restart clean
 
 help:
 	@echo "Available targets:"
@@ -11,6 +19,7 @@ help:
 	@echo "- stop: kill the program running in the background"
 	@echo "- restart: restart the program in the background"
 	@echo "- status: display if the program is running in the background"
+	@echo "- clean: remove all directories and files in Descargas"
 
 start:
 	@if $(NOTRUNIN); then \
@@ -18,7 +27,7 @@ start:
 	echo "Started $(CMD) in the background..."; \
 else \
 	echo "$(CMD) is already running in the background..."; \
-fi
+fi;
 
 stop:
 	@if $(RUNIN); then \
@@ -38,4 +47,8 @@ else \
 	echo "$(CMD) is NOT running in the background..."; \
 fi
 
-
+clean:
+	@echo "Removing all directories and files in Descargas"
+	@rm -rf /Users/pablordoricaw/Descargas/*
+	@echo -e "Listo \c"
+	@printf '\342\234\224\n' | iconv -f UTF-8
