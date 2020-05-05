@@ -7,9 +7,10 @@ NOTRUNIN=! $(RUNIN)
 KILL=pkill -f
 
 ENV=mv_dwnlds
-ACTIVATE=conda activate $(ENV)
+CONDA_BASE=/Users/pablordoricaw/anaconda3
+SOURCE=source $(CONDA_BASE)/etc/profile.d/conda.sh
+ACTIVATE= conda activate $(ENV)
 DEACTIVATE=conda deactivate
-NOTRUNINENV=! $(RUNINENV)
 
 .PHONY: help start stop restart clean
 
@@ -23,8 +24,10 @@ help:
 
 start:
 	@if $(NOTRUNIN); then \
+	$(SOURCE) && \
+	$(ACTIVATE) && \
 	$(CMD) & \
-	echo "Started $(CMD) in the background..."; \
+	echo -e "Started $(CMD) in the background..."; \
 else \
 	echo "$(CMD) is already running in the background..."; \
 fi;
