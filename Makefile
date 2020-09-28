@@ -1,6 +1,5 @@
 SHELL=/usr/local/bin/zsh
 
-
 CMD=python ./mv_dwnlds/mv_dwnlds.py
 RUNIN=if pgrep -f "$(CMD)" > /dev/null; then true; else false; fi
 NOTRUNIN=! $(RUNIN)
