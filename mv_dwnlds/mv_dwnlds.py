@@ -25,6 +25,7 @@ class MyHandler(FileSystemEventHandler):
                     new_destination = temp_folder_destination + f.get_file_name()
 
                     os.rename(src, new_destination)
+        utils.cleanup(folder_destination)
 
 class File():
     def __init__(self, file_name):
