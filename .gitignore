@@ -1,3 +1,6 @@
+# Personal config for mv_dwnlds
+config.yml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
