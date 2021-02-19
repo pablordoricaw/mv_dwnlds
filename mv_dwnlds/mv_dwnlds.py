@@ -43,7 +43,7 @@ class File():
             self.get_file_name().endswith(".download")) else False
 
 if __name__ == "__main__":
-    d = os.path.dirname(os.path.abspath(__file__))
+    d = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     config = utils.read_config(os.path.join(d, './config.yml'))
 
     global folder_to_track
