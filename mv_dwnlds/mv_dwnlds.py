@@ -4,6 +4,7 @@ from watchdog.events import FileSystemEventHandler
 import os
 import time
 from pathlib import Path
+from sys import exit
 
 import utils
 
@@ -53,6 +54,10 @@ if __name__ == "__main__":
     folder_destination = config['dst_dir']
     ignore_file_name = config['ignore_file']
     ignore_file = File(ignore_file_name)
+
+    if folder_to_track == folder_destination:
+        exit("[ERROR]: The track_dir and dst_dir in the config.yml file can NOT be the same directory")
+
 
     event_handler = MyHandler()
     observer = Observer()
