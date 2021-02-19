@@ -1,7 +1,8 @@
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-import os
+from os import listdir, rename
+from os.path import dirname, abspath, join
 import time
 from pathlib import Path
 from sys import exit
@@ -14,7 +15,7 @@ class MyHandler(FileSystemEventHandler):
 
         folder_to_track = folder_to_track + '/' if folder_to_track[-1] != '/' else folder_to_track
 
-        for file_name in os.listdir(folder_to_track):
+        for file_name in listdir(folder_to_track):
             f = File(file_name)
             if f.is_downloaded():
                 if f.get_file_name() != ignore_file.get_file_name():
@@ -25,7 +26,7 @@ class MyHandler(FileSystemEventHandler):
                     src = folder_to_track + f.get_file_name()
                     new_destination = temp_folder_destination + f.get_file_name()
 
-                    os.rename(src, new_destination)
+                    rename(src, new_destination)
 
 class File():
     def __init__(self, file_name):
@@ -43,8 +44,8 @@ class File():
             self.get_file_name().endswith(".download")) else False
 
 if __name__ == "__main__":
-    d = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    config = utils.read_config(os.path.join(d, './config.yml'))
+    d = dirname(dirname(abspath(__file__)))
+    config = utils.read_config(join(d, './config.yml'))
 
     global folder_to_track
     global folder_destination
