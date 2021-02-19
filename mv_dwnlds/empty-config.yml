@@ -1,0 +1,19 @@
+##          ##
+# Dir config #
+##          ##
+
+# Path to default downloads directory
+track_dir: # <ABSOLUTE PATH TO DEFAULT DOWNLOADS DIRECTORY>
+
+# Path to new download directory where downloads will be moved to
+dst_dir: # <ABSOLUTE PATH TO NEW DOWNLOADS DIRECTORY>
+
+# File that will not be moved from default downloads directory
+ignore_file: README!.txt
+
+##            ##
+# Plist config #
+##            ##
+
+plist_name: local.user.mv_dwnlds
+python_env: # <ABSOLUTE PATH OF PYTHON ENVIRONMENT>
