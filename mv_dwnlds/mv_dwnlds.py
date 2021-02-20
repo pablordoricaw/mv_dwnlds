@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from sys import exit
 
-from utils import read_config
+from utils import read_config, cleanup
 
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
@@ -26,7 +26,7 @@ class MyHandler(FileSystemEventHandler):
                     src = folder_to_track + f.get_file_name()
                     new_destination = temp_folder_destination + f.get_file_name()
                     rename(src, new_destination)
-        utils.cleanup(folder_destination)
+        cleanup(folder_destination)
 
 class File():
     def __init__(self, file_name):
