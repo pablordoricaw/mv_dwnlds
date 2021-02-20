@@ -1,56 +1,28 @@
-SHELL=/usr/local/bin/zsh
 
-CMD=python ./mv_dwnlds/mv_dwnlds.py
-RUNIN=if pgrep -f "$(CMD)" > /dev/null; then true; else false; fi
-NOTRUNIN=! $(RUNIN)
-KILL=pkill -f
+PLIST=python ./mv_dwnlds/plist.py
 
-ENV=mv_dwnlds
-CONDA_BASE=/Users/pablordoricaw/anaconda3
-SOURCE=source $(CONDA_BASE)/etc/profile.d/conda.sh
-ACTIVATE= conda activate $(ENV)
-DEACTIVATE=conda deactivate
-
-.PHONY: help start stop restart clean
+.PHONY: help load unload status
 
 help:
 	@echo "Available targets:"
-	@echo "- start: start the program in the background"
-	@echo "- stop: kill the program running in the background"
-	@echo "- restart: restart the program in the background"
-	@echo "- status: display if the program is running in the background"
-	@echo "- clean: remove all directories and files in Descargas"
+	@echo "- load: load agent"
+	@echo "- unload: unload agent"
+	@echo "- restart: unload + load agent"
+	@echo "- status: launchctl list | grep <agent>"
+	@echo "- rm: unload + rm agent plist file"
 
-start:
-	@if $(NOTRUNIN); then \
-	$(SOURCE) && \
-	$(ACTIVATE) && \
-	$(CMD) & \
-	echo -e "Started $(CMD) in the background..."; \
-else \
-	echo "$(CMD) is already running in the background..."; \
-fi;
+load:
+	@$(PLIST) -l
+	@echo "Loaded agent"
 
-stop:
-	@if $(RUNIN); then \
-	$(KILL) $(CMD); \
-	echo "Stopped $(CMD)"; \
-else \
-	echo "$(CMD) is not running..."; \
-fi
+unload:
+	@$(PLIST) -u
+	@echo "Unloaded agent"
 
-
-restart: stop start
+restart: unload load
 
 status:
-	@if $(RUNIN); then \
-	echo "$(CMD) is running in the background..."; \
-else \
-	echo "$(CMD) is NOT running in the background..."; \
-fi
+	@$(PLIST) --status
 
-clean:
-	@echo "Removing all directories and files in Descargas"
-	@rm -rf /Users/pablordoricaw/Descargas/*
-	@echo -e "Listo \c"
-	@printf '\342\234\224\n' | iconv -f UTF-8
+rm: unload
+	@$(PLIST) --rm
