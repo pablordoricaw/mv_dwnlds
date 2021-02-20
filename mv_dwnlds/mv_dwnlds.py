@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from sys import exit
 
-import utils
+from utils import read_config
 
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
@@ -45,7 +45,7 @@ class File():
 
 if __name__ == "__main__":
     d = dirname(dirname(abspath(__file__)))
-    config = utils.read_config(join(d, './config.yml'))
+    config = read_config(join(d, './config.yml'))
 
     global folder_to_track
     global folder_destination
