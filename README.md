@@ -1,70 +1,125 @@
 # Move Downloads
 
-This Python script is based on Kalle Hallden's [YouTube video](https://www.youtube.com/watch?v=qbW6FRbaSl0&t=200s)
-to move the files downloaded with Google Chrome to the Downloads folder to
-folders based on the file extension inside a new folder called "Descargas".
+Project that takes Kalle Hallden's Python automation shown in this [YouTube video](https://www.youtube.com/watch?v=qbW6FRbaSl0&t=200s)
+to move the files downloaded with Google Chrome from the Downloads folder into folders based on the file extension inside a new specified folder.
 
-<span style="color:red">**IMPORTANT:**</span> It's important to note this script only works with downloads from
-Google Chrome. If the script is running and another browser downloads a file,
-most likely the download will fail.
+And runs it in the background as an agent on user log using macOS' launchd.
 
 ## Installation
 
-Clone the directory or download the latest release.
+**Step 1:** 
+Clone master branch or download the latest release.
 
-Once you have downloaded the code update the `config.yml` to use the correct
-paths to the Downloads folder and the "new" Downloads folder (by default
-called Descargas).
+**Step 2:** 
+Once you have cloned the repo or downloaded the release, create a Python environment and install the packages needed.
 
-The last config value, ignore_file, can be ignored or you can chose to move the
-`README!.txt` file to your original Downloads folder to remind you of where the
-downloads are going in case you forget.
+#### Python Environment w/ Anaconda
+The repo has a `environment.yml` file to create a Python environment called `mv_dwnlds` and install all packages.
 
-## Python Environment
-
-Conda was used to manage the environment. If you desire to use pip to download
-the packages for the project just look at the `environment.yml` file for the
-necessary packages.
-
-### Create Conda Environment
-
-To create the same environment with all the packages for that the script needs
-run the following command in your CLI:
+To create environment and install packages with conda run:
 ```
 conda env create -f environment.yml
 ```
+or
 
-Verify the environment was created by checking that the environment `mv_dwnlds`
-exists when running:
+#### Python Envrionment w/ Pip
+If you used another method to create the Python environment that uses pip to manage packages, the repo also has a `requirements.txt` file with the packages needed.
+
+To install packages with pip run:
 ```
-conda info -e
+pip install -r requirements.txt
 ```
 
-### Activating the Environment
+**Step 3:**
+Setup config file.
 
-To activate the environment execute in the CLI:
+Rename the `emtpy-config.yml` file to `config.yml`:
+```
+mv empty-config.yml config.yml
+```
+
+Open the `config.yml` file and fill in the config values using absolute paths. 
+
+As an example here's what my `config.yml` file looks like:
+```
+##                    ##
+# Download dirs config #
+##                    ##
+
+# Path to default downloads directory
+track_dir: /Users/pablordoricaw/Downloads/
+
+# Path to new download directory where downloads will be moved to
+dst_dir: /Users/pablordoricaw/Descargas/
+
+# File that will not be moved from default downloads directory
+ignore_file: README!.txt
+
+##                  ##
+# macOS Agent config #
+##                  ##
+
+# Path to User's Launch Agent's dir to load agent when user logs in
+launch_agent_dir: /Users/pablordoricaw/Library/LaunchAgents/
+
+# Agent name to find when checking if running
+agent_name: local.user.mv_dwnlds
+
+python_env: /Users/pablordoricaw/anaconda3/envs/mv_dwnlds/bin/python
+```
+
+Optional: The config value, ignore_file, can be ignored or you can chose to move the
+`README!.txt` file to your original Downloads folder to remind you of where the
+downloads are going in case you forget.
+
+
+## Usage
+
+**Step 1:**
+Activate the environment created.
+
+#### Activate environment w/ Anaconda
+If you created the environment with Anaconda and didn't change the name of the env in the first line of the `environment.yml` file, then run:
 ```
 conda activate mv_dwnlds
 ```
+**Step 2:**
+Load agent.
 
-## Running the Python Script
+Once the Python environment is active.
 
-The script was made to be executed in the background. The Makefile included
-has targets to run, stop or restart the sript in the background.
-
-To run the script in the background with using the Makefile, make sure you're
-inside the project directory where the Makefile is and execute:
+#### Run w/ make
+The project can be run with `make` by running:
 ```
-make start
-```
-
-To stop the script in the background you can do:
-```
-make stop
+make load
 ```
 
-To restart the script (`make stop` followed by `make start`) you can do:
+And stopped by running:
 ```
-make restart
+make unload
+```
+or
+
+#### Run Python script directly
+To run:
+```
+python mv_dwnlds/plist.py -l
+```
+To stop:
+```
+python mv_dwnlds/plist.py -u
 ```
 
+### Uninstall
+
+To uninstall first unload the agent as shown above when stopping, then delete the plist file and delete the repo.
+
+#### Delete plist file w/ make
+```
+make rm
+```
+
+#### Delete plist file w/ Python script
+```
+python mv_dwnlds/plist.py --rm
+```
