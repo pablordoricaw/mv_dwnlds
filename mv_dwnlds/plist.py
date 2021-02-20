@@ -78,7 +78,7 @@ if __name__ == "__main__":
         stop_agent(agent_name)
     if args.load:
         if not exists(plist_file_path):
-            write_plist(plist_file_path, python_env)
+            write_plist(plist_file_path, agent_name, python_env)
         load_agent(plist_file_path)
     if args.unload:
         unload_agent(plist_file_path)
