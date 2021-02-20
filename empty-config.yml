@@ -1,19 +1,24 @@
-##          ##
-# Dir config #
-##          ##
+##                    ##
+# Download dirs config #
+##                    ##
 
 # Path to default downloads directory
-track_dir: # <ABSOLUTE PATH TO DEFAULT DOWNLOADS DIRECTORY>
+track_dir: # ABSOLUTE PATH TO DEFAULT DOWNLOADS DIRECTORY
 
 # Path to new download directory where downloads will be moved to
-dst_dir: # <ABSOLUTE PATH TO NEW DOWNLOADS DIRECTORY>
+dst_dir: # ABSOLUTE PATH TO NEW DOWNLOADS DIRECTORY
 
 # File that will not be moved from default downloads directory
 ignore_file: README!.txt
 
-##            ##
-# Plist config #
-##            ##
-launch_agent_dir: # < ~/Library/LaunchAgents/ >
+##                  ##
+# macOS Agent config #
+##                  ##
+
+# Path to User's Launch Agent's dir to load agent when user logs in
+launch_agent_dir: # < /Users/your-username/Library/LaunchAgents/ >
+
+# Agent name to find when checking if running
 plist_name: local.user.mv_dwnlds
-python_env: # <ABSOLUTE PATH OF PYTHON ENVIRONMENT>
+
+python_env: # ABSOLUTE PATH OF PYTHON ENVIRONMENT
