@@ -40,7 +40,7 @@ mv empty-config.yml config.yml
 
 Open the `config.yml` file and fill in the config values using absolute paths. 
 
-As an example here's what my `config.yml` file looks like:
+As an **example** here's what my `config.yml` file looks like:
 ```
 ##                    ##
 # Download dirs config #
@@ -94,10 +94,6 @@ The project can be run with `make` by running:
 make load
 ```
 
-And stopped by running:
-```
-make unload
-```
 or
 
 #### Run Python script directly
@@ -105,21 +101,33 @@ To run:
 ```
 python mv_dwnlds/plist.py -l
 ```
-To stop:
+
+
+### Uninstall
+
+**Step 1:** Unload agent.
+#### Unload w/ make
+Unload:
+```
+make unload
+```
+or
+
+#### Unload w/ Python script
+To unload:
 ```
 python mv_dwnlds/plist.py -u
 ```
 
-### Uninstall
-
-To uninstall first unload the agent as shown above when stopping, then delete the plist file and delete the repo.
+**Step 2:** Delete plist file.
 
 #### Delete plist file w/ make
 ```
 make rm
 ```
-
 #### Delete plist file w/ Python script
 ```
 python mv_dwnlds/plist.py --rm
 ```
+
+**Step 3:** Delete the project folder.
