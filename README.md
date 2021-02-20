@@ -1,7 +1,7 @@
 # Move Downloads
 
 Project that takes Kalle Hallden's Python automation shown in this [YouTube video](https://www.youtube.com/watch?v=qbW6FRbaSl0&t=200s)
-to move the files downloaded with Google Chrome from the Downloads folder into folders based on the file extension inside a new specified folder.
+to move the files downloaded with Google Chrome or Safari from the Downloads folder into folders based on the file extension inside a new specified folder.
 
 And runs it in the background as an agent on user log using macOS' launchd.
 
@@ -14,9 +14,9 @@ Clone master branch or download the latest release.
 Once you have cloned the repo or downloaded the release, create a Python environment and install the packages needed.
 
 #### Python Environment w/ Anaconda
-The repo has a `environment.yml` file to create a Python environment called `mv_dwnlds` and install all packages.
+The repo has an `environment.yml` file to create a Python environment called `mv_dwnlds` and install all packages.
 
-To create environment and install packages with conda run:
+To create environment and install packages run:
 ```
 conda env create -f environment.yml
 ```
