@@ -21,9 +21,9 @@ def parse_args():
     parser.add_argument("--status", action="store_true", help="status of agent")
     return parser.parse_args()
 
-def write_plist(plist_file_path, python_env):
+def write_plist(plist_file_path, agent_name, python_env):
     plist = dict(
-        Label="plist_name",
+        Label=agent_name,
         WorkingDirectory= dirname(abspath(__file__)) + "/",
         ProgramArguments= [
             python_env,
@@ -36,8 +36,8 @@ def write_plist(plist_file_path, python_env):
     with open(plist_file_path, "wb") as fp:
         dump(plist, fp)
 
-def status_agent(plist_name):
-    system("launchctl list | grep " + plist_name)
+def status_agent(agent_name):
+    system("launchctl list | grep " + agent_name)
 
 def rm_plist(plist_file_path):
     remove(plist_file_path)
@@ -48,11 +48,11 @@ def load_agent(plist_file_path):
 def unload_agent(plist_file_path):
     system("launchctl unload " + plist_file_path)
 
-def start_agent(plist_name):
-    system("launchctl start " + plist_name)
+def start_agent(agent_name):
+    system("launchctl start " + agent_name)
 
-def stop_agent(plist_name):
-    system("launchctl stop " + plist_name)
+def stop_agent(agent_name):
+    system("launchctl stop " + agent_name)
 
 if __name__ == "__main__":
     
@@ -61,21 +61,21 @@ if __name__ == "__main__":
     d = dirname(dirname(abspath(__file__)))
     config = read_config(join(d, './config.yml'))
 
-    plist_name = config["plist_name"]
+    agent_name = config["agent_name"]
     python_env = config["python_env"]
     launch_agent_dir = config["launch_agent_dir"]
 
-    plist_file_name = plist_name + ".plist"
+    plist_file_name = agent_name + ".plist"
     plist_file_path = join(launch_agent_dir, plist_file_name)
 
     if args.write:
-        write_plist(plist_file_path, python_env)
+        write_plist(plist_file_path, agent_name, python_env)
     if args.start:
         if not exists(plist_file_path):
             write_plist(plist_file_path, python_env)
-        start_agent(plist_name)
+        start_agent(agent_name)
     if args.stop:
-        stop_agent(plist_name)
+        stop_agent(agent_name)
     if args.load:
         if not exists(plist_file_path):
             write_plist(plist_file_path, python_env)
@@ -83,6 +83,6 @@ if __name__ == "__main__":
     if args.unload:
         unload_agent(plist_file_path)
     if args.status:
-        status_agent(plist_name)
+        status_agent(agent_name)
     if args.rm:
         rm_plist(plist_file_path)
