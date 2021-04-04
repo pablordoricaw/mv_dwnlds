@@ -3,7 +3,7 @@
 Project that takes [@KalleHallden](https://github.com/KalleHallden)'s Python automation shown in this [YouTube video](https://www.youtube.com/watch?v=qbW6FRbaSl0&t=200s)
 to move the files downloaded with Google Chrome or Safari from the Downloads folder into folders based on the file extension inside a new specified folder.
 
-And runs it in the background as an agent on user log using macOS' launchd.
+And runs it in the background as an agent on user log in using macOS' launchd.
 
 ## Installation
 
