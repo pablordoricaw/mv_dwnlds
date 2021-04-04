@@ -1,5 +1,5 @@
 from os.path import dirname, abspath, join, exists
-from os import getcwd, system, remove
+from os import getcwd, system, remove, makedirs
 from plistlib import dump
 import argparse
 
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     d = dirname(dirname(abspath(__file__)))
     config = read_config(join(d, './config.yml'))
 
-    agent_name = config["agent_name"]
+    agent_name = config["plist_name"]
     python_env = config["python_env"]
     launch_agent_dir = config["launch_agent_dir"]
 

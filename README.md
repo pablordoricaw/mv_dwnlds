@@ -63,7 +63,7 @@ ignore_file: README!.txt
 launch_agent_dir: /Users/pablordoricaw/Library/LaunchAgents/
 
 # Agent name to find when checking if running
-agent_name: local.user.mv_dwnlds
+plist_name: local.user.mv_dwnlds
 
 python_env: /Users/pablordoricaw/anaconda3/envs/mv_dwnlds/bin/python
 ```
