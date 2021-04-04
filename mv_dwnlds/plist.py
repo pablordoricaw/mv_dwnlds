@@ -1,5 +1,6 @@
 from os.path import dirname, abspath, join, exists
-from os import getcwd, system, remove, makedirs
+from os import getcwd, system, remove
+from pathlib import Path
 from plistlib import dump
 import argparse
 
@@ -33,6 +34,7 @@ def write_plist(plist_file_path, agent_name, python_env):
         KeepAlive=True
     )
     
+    Path(dirname(plist_file_path)).mkdir(parents=True, exist_ok=True)
     with open(plist_file_path, "wb") as fp:
         dump(plist, fp)
 
