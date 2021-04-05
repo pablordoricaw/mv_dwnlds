@@ -52,8 +52,11 @@ track_dir: /Users/pablordoricaw/Downloads/
 # Path to new download directory where downloads will be moved to
 dst_dir: /Users/pablordoricaw/Descargas/
 
-# File that will not be moved from default downloads directory
-ignore_file: README!.txt
+# Files that will not be moved from default downloads directory
+ignore_files:
+  - README!.txt
+  - .DS_Store
+
 
 ##                  ##
 # macOS Agent config #
