@@ -64,7 +64,6 @@ ignore_files:
   - README!.txt
   - .DS_Store
 
-
 ##                  ##
 # macOS Agent config #
 ##                  ##
@@ -78,7 +77,7 @@ plist_name: local.user.mv_dwnlds
 python_env: /Users/pablordoricaw/anaconda3/envs/mv_dwnlds/bin/python
 ```
 
-Optional: The config value, ignore_file, can be ignored or you can chose to move the
+Optional: The config value, ignore_files, can be ignored or you can chose to move the
 `README!.txt` file to your original Downloads folder to remind you of where the
 downloads are going in case you forget.
 
