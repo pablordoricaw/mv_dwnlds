@@ -44,6 +44,6 @@ dependencies:
   - pip:
     - argh==0.26.2
     - pathtools==0.1.2
-    - pyyaml==5.1.2
+    - pyyaml==5.4
     - watchdog==0.9.0
 prefix: /Users/pablordoricaw/anaconda3/envs/mv_dwnlds
