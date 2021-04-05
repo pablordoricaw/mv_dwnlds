@@ -44,7 +44,7 @@ Rename the `emtpy-config.yml` file to `config.yml`:
 mv empty-config.yml config.yml
 ```
 
-Open the `config.yml` file and fill in the config values using absolute paths. 
+Open the `config.yml` file and fill in the config values using absolute paths.
 
 As an **example** here's what my `config.yml` file looks like:
 
