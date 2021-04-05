@@ -7,26 +7,31 @@ And runs it in the background as an agent on user log in using macOS' launchd.
 
 ## Installation
 
-**Step 1:** 
+**Step 1:**
 Clone master branch or download the latest release.
 
-**Step 2:** 
+**Step 2:**
 Once you have cloned the repo or downloaded the release, create a Python environment and install the packages needed.
 
-#### Python Environment w/ Anaconda
+### Python Environment w/ Anaconda
+
 The repo has an `environment.yml` file to create a Python environment called `mv_dwnlds` and install all packages.
 
 To create environment and install packages run:
-```
+
+```bash
 conda env create -f environment.yml
 ```
+
 or
 
-#### Python Envrionment w/ Pip
+### Python Envrionment w/ Pip
+
 If you used another method to create the Python environment that uses pip to manage packages, the repo also has a `requirements.txt` file with the packages needed.
 
 To install packages with pip run:
-```
+
+```bash
 pip install -r requirements.txt
 ```
 
@@ -34,14 +39,16 @@ pip install -r requirements.txt
 Setup config file.
 
 Rename the `emtpy-config.yml` file to `config.yml`:
-```
+
+```bash
 mv empty-config.yml config.yml
 ```
 
 Open the `config.yml` file and fill in the config values using absolute paths. 
 
 As an **example** here's what my `config.yml` file looks like:
-```
+
+```yaml
 ##                    ##
 # Download dirs config #
 ##                    ##
@@ -75,61 +82,75 @@ Optional: The config value, ignore_file, can be ignored or you can chose to move
 `README!.txt` file to your original Downloads folder to remind you of where the
 downloads are going in case you forget.
 
-
 ## Usage
 
 **Step 1:**
 Activate the environment created.
 
-#### Activate environment w/ Anaconda
+### Activate environment w/ Anaconda
+
 If you created the environment with Anaconda and didn't change the name of the env in the first line of the `environment.yml` file, then run:
-```
+
+```bash
 conda activate mv_dwnlds
 ```
+
 **Step 2:**
 Load agent.
 
 Once the Python environment is active.
 
-#### Run w/ make
+### Run w/ make
+
 The project can be run with `make` by running:
-```
+
+```bash
 make load
 ```
 
 or
 
-#### Run Python script directly
+### Run Python script directly
+
 To run:
-```
+
+```bash
 python mv_dwnlds/plist.py -l
 ```
 
-
-### Uninstall
+## Uninstall
 
 **Step 1:** Unload agent.
-#### Unload w/ make
+
+### Unload w/ make
+
 Unload:
-```
+
+```bash
 make unload
 ```
+
 or
 
-#### Unload w/ Python script
+### Unload w/ Python script
+
 To unload:
-```
+
+```bash
 python mv_dwnlds/plist.py -u
 ```
 
 **Step 2:** Delete plist file.
 
-#### Delete plist file w/ make
-```
+### Delete plist file w/ make
+
+```bash
 make rm
 ```
+
 #### Delete plist file w/ Python script
-```
+
+```bash
 python mv_dwnlds/plist.py --rm
 ```
 
