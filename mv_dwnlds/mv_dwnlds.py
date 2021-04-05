@@ -53,8 +53,6 @@ class File():
         else:
             self._file_name = self._file_name.replace(".", "-1.")
 
-        
-
     def is_downloaded(self):
         return True if not (self.get_file_name().endswith(".crdownload") or
             self.get_file_name().startswith(".com.google.Chrome") or
